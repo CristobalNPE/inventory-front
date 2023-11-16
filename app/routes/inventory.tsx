@@ -20,8 +20,8 @@ import { type ItemResponse } from "./inventory_.addItem";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "Inventory" },
+    { name: "description", content: "Inventory Management - Inventory" },
   ];
 };
 

@@ -15,7 +15,7 @@ export const getAllCategories = async (currentPage: string) => {
 export const getAllCategoriesSummary = async () => {
   try {
     const categories = await axios.get(
-      `http://localhost:8080/api/categories/all`
+      `${server}/api/categories/all`
     );
     return categories.data;
   } catch (error) {

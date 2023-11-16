@@ -3,8 +3,10 @@ import {
   Burger,
   ColorSchemeScript,
   Group,
+  Loader,
   MantineProvider,
   NavLink,
+  Stack,
   Title,
 } from "@mantine/core";
 import "@mantine/core/styles.css";
@@ -19,6 +21,7 @@ import {
   NavLink as RemixNavLink,
   Scripts,
   ScrollRestoration,
+  useNavigation,
 } from "@remix-run/react";
 import {
   IconBuildingWarehouse,
@@ -37,6 +40,9 @@ export const links: LinksFunction = () => [
 export default function App() {
   const [opened, { toggle }] = useDisclosure();
   const [active, setActive] = useState(0);
+  const navigation = useNavigation();
+
+  const isLoading = navigation.state === "loading";
 
   const matches = useMediaQuery("(min-width: 30em)");
 
@@ -101,22 +107,31 @@ export default function App() {
               </Group>
             </AppShell.Header>
             <AppShell.Navbar p="md">
-              {sideBarLinks.map((link, index) => (
-                <NavLink
-                  aria-label={`Link to ${link.name}`}
-                  variant="filled"
-                  active={index === active}
-                  label={link.name}
-                  leftSection={<link.icon size={"1.3rem"} stroke={1.5} />}
-                  component={RemixNavLink}
-                  to={link.to}
-                  key={link.name}
-                  onClick={() => {
-                    setActive(index);
-                    toggle();
-                  }}
-                />
-              ))}
+              <Stack h={"100%"} justify="space-between">
+                <div>
+                  {sideBarLinks.map((link, index) => (
+                    <NavLink
+                      aria-label={`Link to ${link.name}`}
+                      variant="filled"
+                      active={index === active}
+                      label={link.name}
+                      leftSection={<link.icon size={"1.3rem"} stroke={1.5} />}
+                      component={RemixNavLink}
+                      to={link.to}
+                      key={link.name}
+                      onClick={() => {
+                        setActive(index);
+                        toggle();
+                      }}
+                    />
+                  ))}
+                </div>
+                {isLoading ? (
+                  <div>
+                    <Title order={2}>Loading...</Title> <Loader type="bars" />
+                  </div>
+                ) : null}
+              </Stack>
             </AppShell.Navbar>
             <AppShell.Main>
               <Outlet />
