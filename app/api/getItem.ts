@@ -1,8 +1,9 @@
 import axios from "axios";
+import { server } from "./createCategory";
 
 export const getItem = async (id: string) => {
   try {
-    const item = await axios.get(`http://localhost:8080/api/items/${id}`);
+    const item = await axios.get(`${server}/api/items/${id}`);
     console.log(item.data); // Log the response to the console
     return item.data;
   } catch (error) {

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { server } from "./createCategory";
 
 export const createItem = async (
   name: string,
@@ -8,7 +9,7 @@ export const createItem = async (
   categories: string[]
 ) => {
   try {
-    const response = await axios.post("http://localhost:8080/api/items", {
+    const response = await axios.post(`${server}/api/items`, {
       name,
       description,
       initialStock,

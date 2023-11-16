@@ -1,4 +1,5 @@
 import axios from "axios";
+import { server } from "./createCategory";
 
 export const updateCategory = async (
   id: string,
@@ -6,7 +7,7 @@ export const updateCategory = async (
   description: string
 ) => {
   const response = await axios.patch(
-    `http://localhost:8080/api/categories/${id}`,
+    `${server}/api/categories/${id}`,
     {
       name,
       description,

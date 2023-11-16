@@ -150,9 +150,6 @@ export default function AddItem() {
         </SimpleGrid>
 
         <Group>
-          <Button size="md" leftSection={<IconCheck />} type="submit">
-            Create
-          </Button>
           <Button
             size="md"
             variant="subtle"
@@ -161,6 +158,9 @@ export default function AddItem() {
             relative="path"
           >
             Go Back
+          </Button>
+          <Button size="md" leftSection={<IconCheck />} type="submit">
+            Create
           </Button>
         </Group>
       </fetcher.Form>

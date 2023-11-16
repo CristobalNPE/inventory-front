@@ -1,9 +1,10 @@
 import axios from "axios";
+import { server } from "./createCategory";
 
 export const getAllCategories = async (currentPage: string) => {
   try {
     const categories = await axios.get(
-      `http://localhost:8080/api/categories?page=${currentPage}`
+      `${server}/api/categories?page=${currentPage}`
     );
     return categories.data;
   } catch (error) {

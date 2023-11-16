@@ -29,19 +29,19 @@ export default function Index() {
         verticalSpacing={{ base: "md", sm: "xl" }}
         className={styles.container}
       >
-        <Card className={styles.card}>
+        <Card withBorder className={styles.card}>
           <span className={styles.number}>{info.numberOfItems}</span>
           <h1 className={styles.description}>Items currently on inventory</h1>
         </Card>
-        <Card className={styles.card}>
+        <Card withBorder className={styles.card}>
           <span className={styles.number}>{info.totalStock}</span>
           <h1 className={styles.description}>Items currently on stock</h1>
         </Card>
-        <Card className={styles.card}>
+        <Card withBorder className={styles.card}>
           <span className={styles.number}>$ {info.totalInventoryValue}</span>
           <h1 className={styles.description}>of Total Inventory Value</h1>
         </Card>
-        <Card
+        <Card withBorder
           component={Link}
           to={`inventory/${info.itemWithMostStock.id}`}
           className={styles.card}
@@ -51,7 +51,7 @@ export default function Index() {
         </Card>
         <Popover width={"fit-content"} position="right" withArrow shadow="md">
           <Popover.Target>
-            <Card className={styles.card}>
+            <Card withBorder className={styles.card}>
               <span className={styles.number}>
                 {info.itemsOnLowStock.length}
               </span>
@@ -63,7 +63,7 @@ export default function Index() {
           </Popover.Target>
           <Popover.Dropdown>
             {info.itemsOnLowStock.map((item) => (
-              <Link className={styles.popoverLink} to={`inventory/${item.id}`}>
+              <Link key={item.id} className={styles.popoverLink} to={`inventory/${item.id}`}>
                 {item.name} ({item.stock})
               </Link>
             ))}
@@ -71,7 +71,7 @@ export default function Index() {
         </Popover>
         <Popover width={"fit-content"} position="right" withArrow shadow="md">
           <Popover.Target>
-            <Card className={styles.card}>
+            <Card withBorder className={styles.card}>
               <span className={styles.number}>
                 {info.categoriesWithNoItems.length}
               </span>
@@ -81,6 +81,7 @@ export default function Index() {
           <Popover.Dropdown>
             {info.categoriesWithNoItems.map((category) => (
               <Link
+                key={category.id}
                 className={styles.popoverLink}
                 to={`categories/${category.id}`}
               >
